@@ -36,9 +36,7 @@ function loadImage(file: File): Promise<HTMLImageElement> {
 async function processImageWithSegmentation(imageElement: HTMLImageElement): Promise<Blob> {
   try {
     console.log('Loading segmentation model...');
-    const segmenter = await pipeline('image-segmentation', 'Xenova/segformer-b0-finetuned-ade-512-512', {
-      quantized: false,
-    });
+    const segmenter = await pipeline('image-segmentation', 'Xenova/segformer-b0-finetuned-ade-512-512');
     
     // Convert HTMLImageElement to canvas
     const canvas = document.createElement('canvas');
