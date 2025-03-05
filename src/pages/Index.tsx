@@ -28,7 +28,9 @@ const Index = () => {
       reader.readAsDataURL(file);
       
       // Process the image (remove background)
+      console.log("Starting background removal process");
       const processed = await removeBackground(file);
+      console.log("Background removal completed");
       setProcessedImage(processed);
       
       toast({
