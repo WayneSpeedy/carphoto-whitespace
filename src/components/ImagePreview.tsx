@@ -6,11 +6,12 @@ import { Button } from '@/components/ui/button';
 interface ImagePreviewProps {
   originalImage: string | null;
   processedImage: string | null;
-  onReset: () => void;
+  onReset: (e: React.MouseEvent) => void;
 }
 
 const ImagePreview: React.FC<ImagePreviewProps> = ({ originalImage, processedImage, onReset }) => {
-  const handleDownload = () => {
+  const handleDownload = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (processedImage) {
       const link = document.createElement('a');
       link.href = processedImage;

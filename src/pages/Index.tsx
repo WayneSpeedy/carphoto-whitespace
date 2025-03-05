@@ -15,6 +15,7 @@ const Index = () => {
 
   const handleImageSelected = async (file: File) => {
     try {
+      // Prevent any default form behavior
       setSelectedFile(file);
       setIsProcessing(true);
       
@@ -49,12 +50,15 @@ const Index = () => {
     }
   };
 
-  const handleReset = () => {
+  const handleReset = (e: React.MouseEvent) => {
+    // Prevent any default behavior
+    e.preventDefault();
     setOriginalImage(null);
     setProcessedImage(null);
     setSelectedFile(null);
   };
 
+  // Use a div instead of any potential form elements
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto py-8 px-4">

@@ -19,14 +19,22 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImageSelected }) => {
     accept: {
       'image/*': ['.jpeg', '.jpg', '.png']
     },
-    maxFiles: 1
+    maxFiles: 1,
+    noClick: false,
+    preventDropOnDocument: true
   });
+
+  const handleClick = (e: React.MouseEvent) => {
+    // This ensures the click is captured but doesn't bubble up to any parent forms
+    e.stopPropagation();
+  };
 
   return (
     <div
       {...getRootProps()}
       className={`border-2 border-dashed rounded-lg p-10 cursor-pointer transition-colors duration-300 flex flex-col items-center justify-center min-h-[200px] text-center
         ${isDragActive ? 'border-primary bg-primary/5' : 'border-gray-300 hover:border-primary'}`}
+      onClick={handleClick}
     >
       <input {...getInputProps()} />
       <Upload className="w-12 h-12 mb-4 text-gray-400" />
